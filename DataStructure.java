@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Set;
+import java.util.TreeSet;
 
 class TreeNode {
     private Integer value;
@@ -96,10 +98,10 @@ class TreeNode {
         boolean left = false;
         boolean right = false;
         if (root.left != null) {
-            left = findTargetValue(root.left, target);
+            left = findTargetValueBinaryTree(root.left, target);
         }
         if (root.right != null) {
-            right = findTargetValue(root.right, target);
+            right = findTargetValueBinaryTree(root.right, target);
         }
 
         return root.value == target || left || right;
@@ -294,10 +296,10 @@ class Node {
             return null;
         }
 
-        Set<Integer> treeSet = new TreeSet<>();
-        ListNode newHead = null;
+        Set<Integer> treeSet = new TreeSet();
+        Node newHead = null;
         while (head != null) {
-            treeSet.add(head.val);
+            treeSet.add(head.value);
             head = head.next;
         }
 
@@ -305,13 +307,13 @@ class Node {
 
         while (iterator.hasNext()) {
             if (newHead == null) {
-                newHead = new ListNode((int) iterator.next());
+                newHead = new Node((int) iterator.next());
                 head = newHead;
             } else {
                 while (newHead.next != null) {
                     newHead = newHead.next;
                 }
-                newHead.next = new ListNode((int) iterator.next());
+                newHead.next = new Node((int) iterator.next());
             }
         }
 
